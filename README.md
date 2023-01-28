@@ -1,4 +1,4 @@
-# th2023
+# hh2022
 ## How to use
 1. Clone repo locally
 2. Open terminal (powershell)
