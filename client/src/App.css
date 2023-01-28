@@ -1,12 +1,11 @@
 .App {
-  width: 100vw;
-  height: 100vh;
+  /* width: 100vw;
+  height: 100vh; */
   background: #FFD29D;
   background-image: linear-gradient(135deg, #fd988a 0%, #ffbc9d 50%, #ffc787 100%);
   color: #C51B29;
   font-family: "Comfortaa", normal;
   display: grid;
-  place-items: center;
 }
 body {
   margin: 0%;
@@ -334,7 +333,3 @@ body {
   border-radius: 5px;
   box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
 }
-
-/* .airport-selection {
-
-} */
