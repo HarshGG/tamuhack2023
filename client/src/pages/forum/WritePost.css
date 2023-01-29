@@ -13,6 +13,10 @@
     margin: 1vw 1vw;
 }
 
+.selectWrapper.titleButton{
+    font-size: 4vw;
+}
+
 .navWrapper {
     display: flex;
     margin: 10vw 0;
@@ -38,8 +42,28 @@
 
 .selectHeading {
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
     font-size: 5vw;
     margin-right: 1vw;
+}
+
+textarea {
+    border-width: 0;
+    border-radius: 2vw;
+    background-color: lightgrey;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3vw;
+    line-height: 3vw;
+
+    padding: 1vw 1vw;
+}
+
+.msgText {
+    width: 100%;
+    height: 30vw;
+    margin-bottom: 10vw;
 }

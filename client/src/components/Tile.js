@@ -4,6 +4,7 @@ import "./Tile.css"
 export default function Tile({tileData}) {
   const [upvotes, setUpvotes] = useState(0);
   const [downvotes, setDownvotes] = useState(0);
+  const [votes, setVotes] = useState(tileData.votes);
 
   const [upvotePressed, setUpvotePressed] = useState(false);
   const [downvotePressed, setDownvotePressed] = useState(false);
@@ -12,16 +13,20 @@ export default function Tile({tileData}) {
   function upvoteHandler(){
     if (upvotePressed){
       setUpvotePressed(false);
-      setUpvotes(upvotes - 1);
+      setVotes(votes - 1);
     }
     else{
       // only allow one at a time
       if (downvotePressed){
         setDownvotePressed(false);
-        setDownvotes(downvotes - 1);
+        setVotes(votes + 2);
+        // setDownvotes(downvotes - 1);
+      }
+      else{
+        setVotes(votes + 1);
       }
       setUpvotePressed(true);
-      setUpvotes(upvotes + 1);
+      // setUpvotes(upvotes + 1);
     }
   }
 
@@ -29,15 +34,18 @@ export default function Tile({tileData}) {
     if (downvotePressed){
       setDownvotePressed(false);
       setDownvotes(downvotes - 1);
+      setVotes(votes + 1);
     }
     else{
       // only allow one at a time
       if (upvotePressed){
         setUpvotePressed(false);
-        setUpvotes(upvotes - 1);
+        setVotes(votes - 2);
+      }
+      else{
+        setVotes(votes - 1);
       }
       setDownvotePressed(true);
-      setDownvotes(downvotes + 1);
     }
   }
 
@@ -76,9 +84,9 @@ export default function Tile({tileData}) {
         {/* Upvote / Downvote */}
       <div className="voteWrapper">
         <div className="voteCounter">{
-          (upvotes - downvotes >= 0) ?
-             "+" + (upvotes - downvotes) 
-            : "-" + Math.abs(upvotes - downvotes) 
+          (votes >= 0) ?
+             "+" + votes 
+            : "-" + Math.abs(votes) 
         }</div>
         {upvotePressed ? (
           <button className="voteButton upvote pressed" onClick={upvoteHandler}>⬆</button>
