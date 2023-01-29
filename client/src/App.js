@@ -183,7 +183,7 @@ function App() {
           // Flight information
         )  : pageState === "flight info" ? (
           <div>
-            <FlightInfo/>
+            <FlightInfo username={username} flightNum={flightNum}/>
           </div>
 
         // forum

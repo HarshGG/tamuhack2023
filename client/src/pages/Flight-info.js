@@ -1,7 +1,7 @@
 import "./Flight-info.css"
 import logo_trans from '../images/logo_trans.png';
 
-function getText(link) {
+function click1(link) {
      // Copy the text inside the text field
     navigator.clipboard.writeText(link);
   
@@ -12,7 +12,7 @@ function getText(link) {
 function flightType(dep_country, dest_country) {
     var domestic = true;
     
-    if (dep_country != dest_country) {
+    if (dep_country !== dest_country) {
         domestic = false;
         return domestic;
     }
@@ -20,10 +20,10 @@ function flightType(dep_country, dest_country) {
     return domestic;
 }
 
-const FlightInfo = () => {
-    var user = 'King Jerry';
+const FlightInfo = ({username}, {flightNum}) => {
+    var username = username;
     var ICAO = 'AAL';
-    var flightNum = 1872;
+    var flightNum = flightNum;
     var IATA = 'AA';
     var airline = 'American Airlines'
     var dep_airport = 'IAH';
@@ -46,11 +46,11 @@ const FlightInfo = () => {
     
     return (
         <div class='background'>
-            <h1 class='center'>Flight Information</h1>
+            <h1 class='h1'>Flight Details</h1>
 
-            <div class="left">Hello, {user}</div>
+            <div class="left">Hello, {username}</div>
             
-            <div class="box">
+            <div class="bigBox">
                 <div>Flight Number: {IATA + flightNum}</div>
                 <div>Airline: {airline}</div>
                 <div>Status: {status}</div>
@@ -81,7 +81,7 @@ const FlightInfo = () => {
             </a>
 
             <div>
-                <button className="button-main" onclick="getText('https://flightaware.com/live/flight/' + ICAO + flightNum);">Send Location</button>
+                <button onClick={() => click1('https://flightaware.com/live/flight/' + ICAO + flightNum)} className="button-main">Send Location</button>
             </div>
             
         </div>
