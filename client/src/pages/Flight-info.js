@@ -20,12 +20,13 @@ function flightType(dep_country, dest_country) {
     return domestic;
 }
 
-const FlightInfo = ({username}, {flightNum}) => {
-    var username = username;
+const FlightInfo = ({username, flightNum}) => {
+    var user = username;
     var ICAO = 'AAL';
-    var flightNum = flightNum;
-    var IATA = 'AA';
-    var airline = 'American Airlines'
+    console.log(flightNum);
+    var flightNum2 = flightNum[2, 3];
+    var IATA = flightNum2[0, 2];
+    var airline = 'American Airlines';
     var dep_airport = 'IAH';
     var dep_city = 'Houston';
     var dep_state = 'TX';
@@ -43,23 +44,22 @@ const FlightInfo = ({username}, {flightNum}) => {
     var dest_time = now.getTime();  // change to dest time
     var status = 'On-time';
     
-    
     return (
         <div class='background'>
             <h1 class='h1'>Flight Details</h1>
 
-            <div class="left">Hello, {username}</div>
+            <div class="left">Hello, {user}</div>
             
             <div class="bigBox">
-                <div>Flight Number: {IATA + flightNum}</div>
+                <div>Flight Number: {IATA + flightNum2}</div>
                 <div>Airline: {airline}</div>
                 <div>Status: {status}</div>
             </div>
 
             <div class="sideBySide">
                 <div class="box">
-                    <div>{dep_airport}</div>
-                    <div>{dep_terminal + dep_gate}</div>
+                    <div class="center">{dep_airport}</div>
+                    <div>{"Gate " + dep_terminal + dep_gate}</div>
                     <div>{dep_city + ', ' + dep_state}</div>
                     <div>{!flightType() ? dep_country : ''}</div>
                 </div>
@@ -67,8 +67,8 @@ const FlightInfo = ({username}, {flightNum}) => {
                 <img src={logo_trans} class="logo" style={{display: "inline-block"}}/>
 
                 <div class="box">
-                    <div>{dest_airport}</div>
-                    <div>{dest_terminal + dep_gate}</div>
+                    <div class="center">{dest_airport}</div>
+                    <div>{"Gate " + dest_terminal + dep_gate}</div>
                     <div>{dest_city + ', ' + dep_state}</div>
                     <div>{!flightType() ? dest_country : ''}</div>
                 </div>
