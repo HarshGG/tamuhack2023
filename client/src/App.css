@@ -46,7 +46,7 @@ margin: 1vw;
 
 
 /* Other stuff */
-.Landing {
+.basic-background {
   width: 100vw;
   height: 100vh;
   background: #FFD29D;
@@ -54,6 +54,8 @@ margin: 1vw;
   color: #C51B29;
   font-family: "Comfortaa", normal;
   display: grid;
+  align-content: center;
+  justify-content: center;
 }
 body {
   margin: 0%;

@@ -20,8 +20,8 @@ import Forum from "./pages/forum/Forum"
 const socket = io.connect("http://localhost:3001");
 
 function App() {
-  const [username, setUsername] = useState("TEMPUSER");
-  const [flightNum, setFlightNum] = useState("TMP113");
+  const [username, setUsername] = useState("");
+  const [flightNum, setFlightNum] = useState("");
   const [pageState, setPageState] = useState(1);
   
   /* Code for LANDING/CHECKIN */
@@ -33,7 +33,15 @@ function App() {
     setFlightNum(event.target.value);
   }
   function onClickGo () {
-    setPageState(2);
+    if(username === "") {
+      alert("Please enter a username!");
+    }
+    if(flightNum === "") {
+      alert("Please enter a flight number!");
+    }
+    else if(username !== "" && flightNum !== "") {
+      setPageState(2);
+    }
   }
   //---------------------------------------------------
 
@@ -41,47 +49,49 @@ function App() {
   // ----------------------------------------------------
   function onGoToChat() {
     setPageState(4);
+    joinRoom();
   }
   const socket = io.connect("http://localhost:3001");
   const [roomState, setRoomState] = useState("defaultRoom");
-    const joinRoom = () => {
-      let room = flightNum;
-      if (username !== "" && room !== "") {
-        console.log(username, '-', room)
-        socket.emit("join_room", room);
-      }
-      setRoomState(room);
+  const joinRoom = () => {
+    let room = flightNum;
+    if (username !== "" && room !== "") {
+      console.log(username, '-', room)
+      socket.emit("join_room", room);
     }
+    setRoomState(room);
+  }
 
-    const [currentMessage, setCurrentMessage] = useState("");
-    const [messageList, setMessageList] = useState([]);
-  
-    const sendMessage = async () => {
-      if (currentMessage !== "") {
-        const messageData = {
-          room: flightNum,
-          author: username,
-          message: currentMessage,
-          time:
-            new Date(Date.now()).getHours() +
-            ":" +
-            new Date(Date.now()).getMinutes(),
-        };
-  
-        await socket.emit("send_message", messageData);
-        setMessageList((list) => [...list, messageData]);
-        setCurrentMessage("");
-      }
-    };
-  
-    useEffect(() => {
-      socket.on("receive_message", (data) => {
+  const [currentMessage, setCurrentMessage] = useState("");
+  const [messageList, setMessageList] = useState([]);
+
+  const sendMessage = async () => {
+    if (currentMessage !== "") {
+      const messageData = {
+        room: flightNum,
+        author: username,
+        message: currentMessage,
+        time:
+          new Date(Date.now()).getHours() +
+          ":" +
+          new Date(Date.now()).getMinutes(),
+      };
+
+      await socket.emit("send_message", messageData);
+      setMessageList((list) => [...list, messageData]);
+      console.log(messageData)
+      setCurrentMessage("");
+    }
+  };
+
+  useEffect(() => {
+    socket.on("receive_message", (data) => {
+      if(!messageList.includes(data) && data.author !== username) {
         console.log(username, 'received', data)
-        if(!messageList.includes(data)) {
-          setMessageList((list) => [...list, data]);
-        }
-      });
-    }, [socket]);
+        setMessageList((list) => [...list, data]);
+      }
+    });
+  }, [socket]);
 
     //---------------------------------------------------
 
@@ -113,11 +123,11 @@ function App() {
     //---------------------------------------------------
 
   return (
-    <div className="App">
+    <div class="App">
       { pageState === 1 ? 
         (
-          <div>
-            <h1 className="home-heading">Project Name</h1> 
+          <div class="basic-background">
+            <h1 class="home-heading">Project Name</h1> 
             <div>
               <img src={logo_anim} class="center"/>
             </div>
@@ -125,7 +135,7 @@ function App() {
               <input class="username-input" type="text" placeholder="Your name..." onChange={onEnterUsername}></input>
             <div>Please enter your flight number</div>
               <input class="username-input" type="text" placeholder="For example AA1234..." onChange={onEnterFlightNum}></input>
-              <button className="button-main" onClick={onClickGo}>
+              <button class="button-main" onClick={onClickGo}>
                   <div class="go-button">
                       <div>Go</div>
                       <div><img src={logo_trans} class="go-image" style={{display: "inline-block"}}/></div>
@@ -175,7 +185,7 @@ function App() {
             </div>
             <h1>Flight Information</h1>
             <a href={"https://flightaware.com/live/flight/" + flightInfoDict.ICAO + flightNum} target='_blank'>
-                <button className="button-main">View Location</button>
+                <button class="button-main">View Location</button>
             </a>
             <div>Flight Number: {flightInfoDict.IATA + flightNum}</div>
             <div>Gate: {flightInfoDict.terminal + flightInfoDict.gate}</div>
