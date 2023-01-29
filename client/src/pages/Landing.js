@@ -1,7 +1,14 @@
 import "./Landing.css";
 import logo_anim from '../images/animated_logo_trans.gif';
+import logo_trans from '../images/logo_trans.png';
 
-const Landing = () => {
+const Landing = ({userame, setUsername, flightNum, setFlightNum}) => {
+    const onEnterUsername = (event) => {
+        setUsername(event.target.value);
+    }
+    const onEnterFlightNum = (event) => {
+        setFlightNum(event.target.value);
+    }
     return (
         <div class="landing">
             <div className="contents-container">
@@ -9,8 +16,17 @@ const Landing = () => {
                 <div>
                 <img src={logo_anim} class="center"/>
                 </div>
-                <a href='/check-in'>
-                    <button className="button-main">Get Started</button>
+                <div>Please enter a good name for you :)</div>
+                <input class="username-input" type="text" placeholder="Your name..." onChange={onEnterUsername}></input>
+                <div>Please enter your flight number</div>
+                <input class="username-input" type="text" placeholder="For example AA1234..." onChange={onEnterFlightNum}></input>
+                <a href="/home">
+                    <button className="button-main">
+                        <div class="go-button">
+                            <div>Go</div>
+                            <div><img src={logo_trans} class="go-image" style={{display: "inline-block"}}/></div>
+                        </div>
+                    </button>
                 </a>
             </div>
         </div>

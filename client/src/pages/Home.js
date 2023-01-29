@@ -4,7 +4,7 @@ import user_icon from '../images/user-icon.png';
 import logout from '../images/logout.svg';
 import "./Home.css";
 
-const Home = () => {
+const Home = ({username, flightNum}) => {
     return (
         <div class="Home">
             <div class="app-nav-header">
@@ -13,8 +13,8 @@ const Home = () => {
                 <img class="navbar-image" src={logout}></img>
             </div>
             <div class="title-text">
-                <h1>Welcome, NAME</h1>
-                <h2>AA1234</h2>
+                <h1>Welcome, {username}</h1>
+                <h2>{flightNum}</h2>
             </div>
             <div style={{flex: 1, height: '1px', backgroundColor: 'black', margin: '15px'}} />
             <div class="tabs">

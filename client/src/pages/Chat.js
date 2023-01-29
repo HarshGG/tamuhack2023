@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import ScrollToBottom from "react-scroll-to-bottom";
 import io from "socket.io-client";
 
-import "../App.css"
+import "./Chat.css"
 
 function Chat({ username }) {
   const [currentMessage, setCurrentMessage] = useState("");
@@ -44,47 +44,45 @@ function Chat({ username }) {
   }, [socket]);
 
   return (
-    <div className="chat-window">
-      <div className="chat-header">
-        <p>{room}</p>
-      </div>
-      <div className="chat-body">
-        <ScrollToBottom className="message-container">
-          {messageList.map((messageContent) => {
-            return (
-              <div
-                className="message"
-                id={username === messageContent.author ? "you" : "other"}
-              >
-                <div>
-                  <div className="message-content">
-                    <p>{messageContent.message}</p>
-                  </div>
-                  <div className="message-meta">
-                    <p id="time">{messageContent.time}</p>
-                    <p id="author">{messageContent.author}</p>
+    <div class="chat-background">
+        <div class="chat-header">
+          <div class="room-title">{room}</div>
+        </div>
+        <div class="chat-body" id="scrollableChatBox">
+            {messageList.map((messageContent) => {
+              return (
+                <div
+                  class="message"
+                  id={username === messageContent.author ? "you" : "other"}
+                >
+                  <div>
+                    <div class="message-content">
+                      <p>{messageContent.message}</p>
+                    </div>
+                    <div class="message-meta">
+                      <p id="time">{messageContent.time}</p>
+                      <p id="author">{messageContent.author}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
-        </ScrollToBottom>
+              );
+            })}
+        </div>
+        <div class="chat-footer">
+          <input
+            type="text"
+            value={currentMessage}
+            placeholder="Hey..."
+            onChange={(event) => {
+              setCurrentMessage(event.target.value);
+            }}
+            onKeyPress={(event) => {
+              event.key === "Enter" && sendMessage();
+            }}
+          />
+          <button onClick={sendMessage}>&#9658;</button>
+        </div>
       </div>
-      <div className="chat-footer">
-        <input
-          type="text"
-          value={currentMessage}
-          placeholder="Hey..."
-          onChange={(event) => {
-            setCurrentMessage(event.target.value);
-          }}
-          onKeyPress={(event) => {
-            event.key === "Enter" && sendMessage();
-          }}
-        />
-        <button onClick={sendMessage}>&#9658;</button>
-      </div>
-    </div>
   );
 }
 

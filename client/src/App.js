@@ -7,7 +7,7 @@ import logo_anim from './images/animated_logo_trans.gif';
 import logo_trans from './images/logo_trans.png';
 
 import Header from "./components/Header"
-import Chat from "./components/Chat";
+import Chat from "./pages/Chat";
 import Landing from "./pages/Landing"
 import Home from "./pages/Home"
 import CheckIn from "./pages/Check-in"
@@ -18,10 +18,8 @@ const socket = io.connect("http://localhost:3001");
 
 function App() {
   const [username, setUsername] = useState("");
+  const [flightNum, setFlightNum] = useState("");
   // const [room, setRoom] = useState("");
-  const [pageState, setPageState] = useState(1);
-  const [arrival, setArrival] = useState('IAH');
-  const [departure, setDeparture] = useState('IAH');
   const [roomState, setRoomState] = useState('wrong')
   // useEffect(() => {
   //   console.log('room is', room)
@@ -29,41 +27,19 @@ function App() {
 
   let room = "";
 
-  // page state is working
-  const incrementPageState = () => {
-    setPageState(pageState + 1);
-  }
-
-  const decrementPageState = () => {
-    setPageState(pageState - 1);
-  }
-
-  const onEnterUsername = (event) => {
-    setUsername(event.target.value);
-  }
-
-  const onSetDeparture = async (event) => {
-    setDeparture(event.target.value);
-  }
-
-  function onSetArrival(event) {
-    setArrival(event.target.value);
-  }
-
   function joinRoom() {
-    room = departure + ' \u2794 ' + arrival;
-    if (username !== "" && room !== "") {
-      console.log(username, '-', room)
-      socket.emit("join_room", room);
+      room = 'AA1234';
+      if (username !== "" && room !== "") {
+        console.log(username, '-', room)
+        socket.emit("join_room", room);
+      }
+      setRoomState(room);
     }
-    setRoomState(room)
-    incrementPageState();
-  };
+    
 
   return (
     <BrowserRouter>
       <div className="App">
-        {/* <Header /> */}
         {/*
         { pageState === 1 ? (
           <div className="joinChatContainer">
@@ -132,9 +108,8 @@ function App() {
             </div>)} */}
       </div>
       <Routes>
-        <Route path='/' element={ <Landing/> } exact/>
-        <Route path='/check-in' element={ <CheckIn/> }/>
-        <Route path='/home' element={ <Home/> }/>
+        <Route path="/" element={<Landing username={username} setUsername={setUsername} flightNum={flightNum} setFlightNum={setFlightNum}/>} exact />
+        <Route path='/home' element={ <Home username={username} flightNum={flightNum}/> }/>
         <Route path='/flight-info' element={ <FlightInfo/> }/>
         <Route path='/forum' element={ <Forum/> }/>
         <Route path="/chat" element={ <Chat/> } />
