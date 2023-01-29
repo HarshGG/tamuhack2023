@@ -23,7 +23,6 @@ function flightType(dep_country, dest_country) {
 const FlightInfo = ({username, flightNum}) => {
     var user = username;
     var ICAO = 'AAL';
-    console.log(flightNum);
     var flightNum2 = flightNum[2, 3];
     var IATA = flightNum2[0, 2];
     var airline = 'American Airlines';
@@ -45,7 +44,7 @@ const FlightInfo = ({username, flightNum}) => {
     var status = 'On-time';
     
     return (
-        <div class='background'>
+        <div class='basic-background'>
             <h1 class='h1'>Flight Details</h1>
 
             <div class="left">Hello, {user}</div>
@@ -54,6 +53,8 @@ const FlightInfo = ({username, flightNum}) => {
                 <div>Flight Number: {IATA + flightNum2}</div>
                 <div>Airline: {airline}</div>
                 <div>Status: {status}</div>
+                <div>Departue Time: {dep_time}</div>
+                <div>Arrival Time: {dest_time}</div>
             </div>
 
             <div class="sideBySide">
@@ -74,14 +75,14 @@ const FlightInfo = ({username, flightNum}) => {
                 </div>
             </div>
 
-            {/* ({now} < {dep_time}) ? () */}
+            <div class="grid">
+                <a href={"https://flightaware.com/live/flight/" + ICAO + flightNum} target='_blank'>
+                    <button className="button-main">View Location</button>
+                </a>
 
-            <a href={"https://flightaware.com/live/flight/" + ICAO + flightNum} target='_blank'>
-                <button className="button-main">View Location</button>
-            </a>
-
-            <div>
-                <button onClick={() => click1('https://flightaware.com/live/flight/' + ICAO + flightNum)} className="button-main">Send Location</button>
+                <div>
+                    <button onClick={() => click1('https://flightaware.com/live/flight/' + ICAO + flightNum)} className="button-main">Send Location</button>
+                </div>
             </div>
             
         </div>
