@@ -1,6 +1,6 @@
-.App {
-  /* width: 100vw;
-  height: 100vh; */
+.Landing {
+  width: 100vw;
+  height: 100vh;
   background: #FFD29D;
   background-image: linear-gradient(135deg, #fd988a 0%, #ffbc9d 50%, #ffc787 100%);
   color: #C51B29;

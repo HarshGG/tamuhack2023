@@ -8,7 +8,7 @@ import logo_trans from './images/logo_trans.png';
 
 import Header from "./components/Header"
 import Chat from "./components/Chat";
-import Landing from "./pages/Home"
+import Landing from "./pages/Landing"
 import Home from "./pages/Home"
 import CheckIn from "./pages/Check-in"
 import FlightInfo from "./pages/Flight-info"
@@ -63,10 +63,8 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <Header />
-        {/*<div class="hasicon">
-          <img src={logo_trans} class="icon" />
-        </div>
+        {/* <Header /> */}
+        {/*
         { pageState === 1 ? (
           <div className="joinChatContainer">
             <h1 className="home-heading">Tindair</h1> 

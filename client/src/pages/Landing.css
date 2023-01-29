@@ -1,0 +1,104 @@
+.landing {
+    width: 100vw;
+    height: 100vh;
+    background: #FFD29D;
+    background-image: linear-gradient(135deg, #fd988a 0%, #ffbc9d 50%, #ffc787 100%);
+    color: #C51B29;
+    font-family: "Comfortaa", normal;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+  }
+  body {
+    margin: 0%;
+    padding: 0%;
+  }
+  @import url("https://fonts.googleapis.com/css?family=Comfortaa:300,400,700");
+  @import url("https://fonts.googleapis.com/css?family=Oxygen:300,400,700");
+  
+  .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }
+  
+  .icon { display: none; }
+  .hasicon { position: relative; }
+  .hasicon .icon {
+      position: relative;
+      border-radius: 50%;
+      top: 0;
+      left: 0;
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+  }
+
+  .wrapper {
+    position: relative;
+    overflow: hidden;
+    width: 100px;
+    height: 100px; 
+  }
+  
+  #slide {
+    position: absolute;
+    left: -100px;
+    width: 100px;
+    height: 100px;
+    background: blue;
+    background-image: linear-gradient(135deg, rgb(230, 40, 56) 0%, rgb(248, 94, 0) 50%, rgb(255, 148, 95) 100%);
+    -webkit-animation: slide 0.5s forwards;
+    -webkit-animation-delay: 2s;
+    animation: slide 0.5s forwards;
+    animation-delay: 2s;
+  }
+  
+  .slide-in {
+    animation: slide-in 0.5s forwards;
+    -webkit-animation: slide-in 0.5s forwards;
+  }
+  
+  .slide-out {
+    animation: slide-out 0.5s forwards;
+    -webkit-animation: slide-out 0.5s forwards;
+  }
+    
+  @keyframes slide-in {
+    100% { transform: translateX(0%); }
+  }
+  
+  @-webkit-keyframes slide-in {
+    100% { -webkit-transform: translateX(0%); }
+  }
+    
+  @keyframes slide-out {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-100%); }
+  }
+  
+  @-webkit-keyframes slide-out {
+    0% { -webkit-transform: translateX(0%); }
+    100% { -webkit-transform: translateX(-100%); }
+  }
+
+  .contents-container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .contents-container h3 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  .contents-container input {
+    width: 210px;
+    height: 40px;
+    margin: 7px;
+    border: 2px solid #FFB563;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 16px;
+  }
