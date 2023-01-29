@@ -1,47 +1,88 @@
 import "./Flight-info.css"
-import { useEffect, useState } from "react";
+import logo_trans from '../images/logo_trans.png';
 
+function getText(link) {
+     // Copy the text inside the text field
+    navigator.clipboard.writeText(link);
+  
+    // Alert the copied text
+    alert("Copied link to clipboard");
+  }
+
+function flightType(dep_country, dest_country) {
+    var domestic = true;
+    
+    if (dep_country != dest_country) {
+        domestic = false;
+        return domestic;
+    }
+
+    return domestic;
+}
 
 const FlightInfo = () => {
-    const [window, setWindow] = useState("rec");
-
+    var user = 'King Jerry';
     var ICAO = 'AAL';
     var flightNum = 1872;
     var IATA = 'AA';
+    var airline = 'American Airlines'
     var dep_airport = 'IAH';
     var dep_city = 'Houston';
-    var dep_state = 'Texas';
+    var dep_state = 'TX';
     var dep_country = 'United States';
     const now = new Date();
-    var dep_time = now.getTime();
-    var gate = 22;
-    var terminal = 'A';
+    var dep_time = now.getTime();  // change to dep time
+    var dep_gate = 22;
+    var dep_terminal = 'A';
+    var dest_gate = 11;
+    var dest_terminal = 'C';
     var dest_airport = 'CMH';
     var dest_city = 'Columbus';
-    var dest_state = 'Ohio';
+    var dest_state = 'OH';
     var dest_country = 'United States';
-    var dest_time = now.getTime();
+    var dest_time = now.getTime();  // change to dest time
     var status = 'On-time';
     
     
     return (
         <div class='background'>
-            <div class="header">
-                <button class="titleButton returnButton">Return</button>
-                {/* <button id="recButton" class={"titleButton recButton " + ((window === "rec") ? "selected" : "")} onClick={() => setWindow("rec")}>Recommendations</button>
-                <button id="discButton" class={"titleButton discButton " + ((window === "disc") ? "selected" : "")} onClick={() => setWindow("disc")}>Discussion</button> */}
+            <h1 class='center'>Flight Information</h1>
+
+            <div class="left">Hello, {user}</div>
+            
+            <div class="box">
+                <div>Flight Number: {IATA + flightNum}</div>
+                <div>Airline: {airline}</div>
+                <div>Status: {status}</div>
             </div>
-            <h1>Flight Information</h1>
+
+            <div class="sideBySide">
+                <div class="box">
+                    <div>{dep_airport}</div>
+                    <div>{dep_terminal + dep_gate}</div>
+                    <div>{dep_city + ', ' + dep_state}</div>
+                    <div>{!flightType() ? dep_country : ''}</div>
+                </div>
+
+                <img src={logo_trans} class="logo" style={{display: "inline-block"}}/>
+
+                <div class="box">
+                    <div>{dest_airport}</div>
+                    <div>{dest_terminal + dep_gate}</div>
+                    <div>{dest_city + ', ' + dep_state}</div>
+                    <div>{!flightType() ? dest_country : ''}</div>
+                </div>
+            </div>
+
+            {/* ({now} < {dep_time}) ? () */}
+
             <a href={"https://flightaware.com/live/flight/" + ICAO + flightNum} target='_blank'>
                 <button className="button-main">View Location</button>
             </a>
-            <div>Flight Number: {IATA + flightNum}</div>
-            <div>Gate: {terminal + gate}</div>
-            <div>{dep_airport} -> {dest_airport}</div>
-            <div>{dep_city}, {dep_state}  to  {dest_city}, {dest_state}</div>
 
-            
-            
+            <div>
+                <button className="button-main" onclick="getText('https://flightaware.com/live/flight/' + ICAO + flightNum);">Send Location</button>
+            </div>
             
         </div>
     )
