@@ -136,7 +136,7 @@ function App() {
         <Route path='/check-in' element={ <CheckIn/> }/>
         <Route path='/home' element={ <Home/> }/>
         <Route path='/flight-info' element={ <FlightInfo/> }/>
-        <Route path='/recommendations' element={ <Recommendations/> }/>
+        <Route path='/recs' element={ <Recommendations/> }/>
       </Routes>
     </BrowserRouter>
   );
