@@ -3,6 +3,7 @@ import React from 'react'
 
 function Menu({window, setWindow, menuItems}) {
 
+    console.log("creating menu with options", menuItems);
   return (
     <div>
         <div className="header">
