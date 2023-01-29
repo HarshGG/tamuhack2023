@@ -1,6 +1,10 @@
 import "./Flight-info.css"
+import { useEffect, useState } from "react";
+
 
 const FlightInfo = () => {
+    const [window, setWindow] = useState("rec");
+
     var ICAO = 'AAL';
     var flightNum = 1872;
     var IATA = 'AA';
@@ -22,7 +26,12 @@ const FlightInfo = () => {
     
     return (
         <div class='background'>
-            <h1 class='center'>Flight Information</h1>
+            <div class="header">
+                <button class="titleButton returnButton">Return</button>
+                {/* <button id="recButton" class={"titleButton recButton " + ((window === "rec") ? "selected" : "")} onClick={() => setWindow("rec")}>Recommendations</button>
+                <button id="discButton" class={"titleButton discButton " + ((window === "disc") ? "selected" : "")} onClick={() => setWindow("disc")}>Discussion</button> */}
+            </div>
+            <h1>Flight Information</h1>
             <a href={"https://flightaware.com/live/flight/" + ICAO + flightNum} target='_blank'>
                 <button className="button-main">View Location</button>
             </a>
