@@ -27,7 +27,8 @@ const socket = io.connect("http://localhost:3001");
 function App() {
   const [username, setUsername] = useState("");
   const [flightNum, setFlightNum] = useState("");
-  const [pageState, setPageState] = useState(1);
+  const [pageState, setPageState] = useState("exit");
+  const menuOptions = ["exit", "home", "flight info", "forum", "chat"];
   
   /* Code for LANDING/CHECKIN */
   //---------------------------------------------------
@@ -129,7 +130,9 @@ function App() {
 
   return (
     <div class="App">
-      { pageState === 1 ? 
+      {!(pageState == "exit") && <Menu window={pageState} setWindow={setPageState} menuItems={menuOptions}/>}
+      {/* Landing page */}
+      { pageState === "exit" ? 
         (
           <div class="basic-background">
             <h1 class="home-heading">Flock</h1> 
@@ -148,7 +151,8 @@ function App() {
                 </button>
               </div>
           </div>
-        ) : pageState === 2 ? (
+        // Home page
+        ) : pageState === "home" ? (
           <div class="Home">
             <div class="home-title-text">
                 <div class="home-welcome">Welcome, {username}</div>
@@ -182,23 +186,19 @@ function App() {
                 </div>
             </div>
           </div>
-        )  : pageState === 3 ? (
-          <div class='background'>
-            <div class="header">
-                <button class="titleButton returnButton">Return</button>
-                {/* <button id="recButton" class={"titleButton recButton " + ((window === "rec") ? "selected" : "")} onClick={() => setWindow("rec")}>Recommendations</button>
-                <button id="discButton" class={"titleButton discButton " + ((window === "disc") ? "selected" : "")} onClick={() => setWindow("disc")}>Discussion</button> */}
-            </div>
-            <h1>Flight Information</h1>
-            <a href={"https://flightaware.com/live/flight/" + flightInfoDict.ICAO + flightNum} target='_blank'>
-                <button class="button-main">View Location</button>
-            </a>
-            <div>Flight Number: {flightInfoDict.IATA + flightNum}</div>
-            <div>Gate: {flightInfoDict.terminal + flightInfoDict.gate}</div>
-            <div>{flightInfoDict.dep_airport} + {'->'}  + {flightInfoDict.dest_airport}</div>
-            <div>{flightInfoDict.dep_city}, {flightInfoDict.dep_state}  to  {flightInfoDict.dest_city}, {flightInfoDict.dest_state}</div>  
-        </div>
-      ) : pageState === 4 ? (
+          // Flight information
+        )  : pageState === "flight info" ? (
+          <div>
+            <FlightInfo username={username} flightNum={flightNum}/>
+          </div>
+
+        // forum
+        ) : pageState === "forum" ? (
+          <div>
+            <Forum/>
+          </div>
+        // Chat
+      ) : pageState === "chat" ? (
         <div class="chat-background">
           <div class="chat-header">
             <div class="room-title">{flightNum}</div>

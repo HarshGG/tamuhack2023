@@ -1,8 +1,10 @@
 // rfce
-import React from 'react'
+import React from 'react';
+import "./Menu.css";
 
 function Menu({window, setWindow, menuItems}) {
 
+    console.log("creating menu with options", menuItems);
   return (
     <div>
         <div className="header">

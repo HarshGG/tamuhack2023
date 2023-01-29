@@ -3,29 +3,20 @@ import Recs from "./Recs"
 import Menu from "../../components/Menu"
 import Dropbtn from "../../components/Dropbtn"
 import Discussion from "./Discussion"
+import WritePost from "./WritePost"
 import { useEffect, useState } from "react";
 
 
 const Forum = () => {
-    const [window, setWindow] = useState("rec");
-    const [typeFilter, setTypeFilter] = useState("all");
-    const menuOptions = ["Home", "Flight Info", "Forum", "Chat"];
-    const typeOptions = ["all", "food", "activity", "general"];
-    const params = {
-        type: "food",
-        insideSecurity: true,
-
-    };
+    const [writingPost, setWritingPost] = useState(false);
 
     return (
         <>
-            <Dropbtn heading={"Type"} currOpt={typeFilter} setCurrOpt={setTypeFilter} options={typeOptions}/>
-            <Menu window={window} setWindow={setWindow} menuItems={menuOptions}/>
             <div class="mainBody">
                 <div>{
-                    (window === "Forum") 
-                        ? <Recs params={params}></Recs>
-                        : <Discussion></Discussion>
+                    (writingPost)
+                        ? <WritePost />
+                        : <Recs/>
                 }</div>
             </div>
         </>

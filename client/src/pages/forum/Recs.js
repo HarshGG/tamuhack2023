@@ -1,7 +1,18 @@
 import React, { useState } from 'react'
 import Tile from '../../components/Tile';
+import Dropbtn from '../../components/Dropbtn';
 
-function Recs({params}) {
+function Recs() {
+
+    // const params = {
+    //     type: "food",
+    //     insideSecurity: true,
+    // };
+
+    const [params, setParams] = useState({});
+
+    const [typeFilter, setTypeFilter] = useState("all");
+    const typeOptions = ["all", "food", "activity", "general"];
 
     // temporary tiles for debugging
     var tiles = [
@@ -80,6 +91,8 @@ function Recs({params}) {
 
     return (
         <div>
+            <h2>Filter</h2>
+            <Dropbtn heading={"Type"} currOpt={typeFilter} setCurrOpt={setTypeFilter} options={typeOptions}/>
             <h2>Posts</h2>
             {tileList}
             {/* <Tile tileData={tiles[2]}/> */}

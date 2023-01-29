@@ -1,5 +1,24 @@
 /* Selection Window */
 .header {
     display: flex;
-    justify-content: left;
+    justify-content: center;
   }
+
+.titleButton {
+  background-color: lightgrey;
+  color: #fff;
+  display: inline-block;
+  border-width: 0;
+  font-size: 6vw;
+  position: relative;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+  padding: 1vw 2vw;
+  margin: 1vw 0;
+  }
+    
+  .selected {
+    background-color: grey;
+  }
+    
