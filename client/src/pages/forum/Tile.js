@@ -83,15 +83,15 @@ export default function Tile({tileData}) {
             : "-" + Math.abs(upvotes - downvotes) 
         }</div>
         {upvotePressed ? (
-          <button className="upvote pressed" onClick={upvoteHandler}>⬆</button>
+          <button className="voteButton upvote pressed" onClick={upvoteHandler}>⬆</button>
           ) : (
-            <button className="upvote" onClick={upvoteHandler}>⬆</button>
+            <button className="voteButton upvote" onClick={upvoteHandler}>⬆</button>
           )
         }
         {downvotePressed ? (
-          <button className="downvote pressed" onClick={downvoteHandler}>⬇</button>
+          <button className="voteButton downvote pressed" onClick={downvoteHandler}>⬇</button>
           ) : (
-            <button className="downvote" onClick={downvoteHandler}>⬇</button>
+            <button className="voteButton downvote" onClick={downvoteHandler}>⬇</button>
           )
         }
       </div>

@@ -1,8 +1,7 @@
-import './App.css';
 import React, { useState } from 'react'
 import Tile from './Tile';
 
-function App() {
+function Recs() {
 
     // temporary tiles for debugging
     var tiles = [
@@ -74,11 +73,11 @@ function App() {
 
     return (
         <div>
-            <h1>Posts</h1>
+            <h2>Posts</h2>
             {tileList}
             {/* <Tile tileData={tiles[2]}/> */}
         </div>
     );
 }
 
-export default App;
+export default Recs;

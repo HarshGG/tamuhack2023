@@ -6,8 +6,6 @@ viewport height: vh
 .tileBox {
     background-color: lightgrey;
     border-radius: 2vw;
-    margin-left: 10%;
-    margin-right: 10%;
     margin-bottom: 5%;
     padding: 2%;
 }
@@ -25,7 +23,7 @@ viewport height: vh
 
 .name {
     font-weight: bold;
-    font-size: 5.5vw;
+    font-size: 5vw;
 }
 .dateLocWrapper {
     display: flex;
@@ -39,6 +37,7 @@ viewport height: vh
     font-style: italic;
 }
 
+/* Tags */
 .tagWrapper {
     width: 30%; 
     display: grid;  
@@ -60,7 +59,6 @@ viewport height: vh
     font-size: 3vw;
 }
 
-/* Tags */
 
 /* contents */
 .postBody {
@@ -82,7 +80,7 @@ viewport height: vh
 }
 
 
-button{
+.voteButton{
     background-color: rgba(255, 255, 255, 0);
     border: none;
     color: white;
