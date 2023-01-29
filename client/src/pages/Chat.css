@@ -97,10 +97,6 @@
     font-size: 25px;
     color: #F85E00;
   }
-  
-  .chat-footer button:hover {
-    color: #FFB563;
-  }
 
   .chat-background {
     width: 100vw;

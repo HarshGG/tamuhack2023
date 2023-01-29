@@ -235,21 +235,12 @@ function App() {
                 event.key === "Enter" && sendMessage();
               }}
             />
-            <button onClick={sendMessage}>&#9658;</button>
+            <button onClick={sendMessage}>
+              <div><img src={logo_trans} class="go-image"/></div>
+            </button>
           </div>
         </div>
-      ) : pageState === 5 || pageState === 6 ? (
-            <>
-              {/* <Menu window={window} setWindow={setWindow} menuItems={menuOptions}/>
-              <div class="mainBody">
-                  <div>{
-                      (pageState === 5) 
-                          ? <Recs params={params}></Recs>
-                          : <Discussion></Discussion>
-                  }</div>
-              </div> */}
-            </>
-      ) : (<></>) }
+      ) : (<>404</>) }
     </div>
   );
 }

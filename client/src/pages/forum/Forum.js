@@ -71,7 +71,7 @@ function Forum({username}) {
     return (
         <>
             <div class="mainBody">
-                <div>{
+                <div class="forumContents">{
                     (writingPost)
                         ? <WritePost username={username} setWritingPost={setWritingPost} addPost={addPost}/>
                         : <Recs tiles={tiles} setWritingPost={setWritingPost}/>

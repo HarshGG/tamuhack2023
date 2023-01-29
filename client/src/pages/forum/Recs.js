@@ -97,14 +97,14 @@ function Recs({tiles, setWritingPost}) {
 
     return (
         <div>
-            <h2>Filter</h2>
-            <Dropbtn heading={"Type"} currOpt={typeFilter} setCurrOpt={setTypeParam} options={typeOptions}/>
+            <h2 class="forum-h2">Filter</h2>
+            <Dropbtn class="dropbtn" heading={"Type"} currOpt={typeFilter} setCurrOpt={setTypeParam} options={typeOptions}/>
             <Dropbtn heading={"Security"} currOpt={securityFilter} setCurrOpt={setSecurityParam} options={securityOptions}/>
             <Dropbtn heading={"Price"} currOpt={priceFilter} setCurrOpt={setPriceParam} options={priceOptions}/>
             <Dropbtn heading={"Length"} currOpt={lengthFilter} setCurrOpt={setLengthParam} options={lengthOptions}/>
 
 
-            <h2>Posts</h2>
+            <h2 class="forum-h2">Posts</h2>
             <div class="newTile" onClick={() => setWritingPost(true)}>add an experience</div>
             {tileList}
         </div>
