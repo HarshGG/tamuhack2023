@@ -1,25 +1,29 @@
 import "./Forum.css"
 import Recs from "./Recs"
+import Menu from "../../components/Menu"
 import Discussion from "./Discussion"
 import { useEffect, useState } from "react";
 
 
 const Forum = () => {
     const [window, setWindow] = useState("rec");
+    const menuOptions = ["Home", "Flight Info", "Forum", "Chat"];
+    const params = {
+        type: "food",
+
+    };
 
     return (
-        <div class="mainBody">
-            <div class="header">
-                <button class="titleButton returnButton">Return</button>
-                <button id="recButton" class={"titleButton recButton " + ((window === "rec") ? "selected" : "")} onClick={() => setWindow("rec")}>Recommendations</button>
-                <button id="discButton" class={"titleButton discButton " + ((window === "disc") ? "selected" : "")} onClick={() => setWindow("disc")}>Discussion</button>
+        <>
+            <Menu window={window} setWindow={setWindow} menuItems={menuOptions}/>
+            <div class="mainBody">
+                <div>{
+                    (window === "Forum") 
+                        ? <Recs params={params}></Recs>
+                        : <Discussion></Discussion>
+                }</div>
             </div>
-            <div>{
-                (window === "rec") 
-                    ? <Recs></Recs>
-                    : <Discussion></Discussion>
-            }</div>
-        </div>
+        </>
     )
 }
 

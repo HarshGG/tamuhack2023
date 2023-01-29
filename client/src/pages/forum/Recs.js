@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Tile from './Tile';
 
-function Recs() {
+function Recs({params}) {
 
     // temporary tiles for debugging
     var tiles = [
@@ -28,7 +28,7 @@ function Recs() {
                 month: 1,
                 year: 2023,
             },
-            class: "dining",
+            class: "food",
             length: 90,
             price: 5,
             insideSecurity: true,
@@ -52,22 +52,17 @@ function Recs() {
 
     ]
 
-    // const [tileData, setTileData] = useState({
-    //     name: "Vinay Mannem",
-    //     date: {
-    //         day: 28,
-    //         month: 1,
-    //         year: 2023,
-    //     },
-    //     class: "activity",
-    //     length: 180,
-    //     insideSecurity: false,
-    //     price: 30,
-    //     location: "StoneCo Climbing",
-    //     msg: "I went climbing at a local gym called StoneCo during my layover. Try it out!",
-    // });
+    function compare(data, params) {
+        if (params.type && data.type != params.type){
+            console.log("compare failed for data " + data + " and params " + params);
+            return false;
+        }
+
+        return true;
+    }
 
     const tileList = tiles.map(tile =>
+        // compare(tile, params) && <Tile key={tile.id} tileData={tile} />
         <Tile key={tile.id} tileData={tile} />
     );
 
