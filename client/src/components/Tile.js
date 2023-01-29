@@ -56,7 +56,7 @@ export default function Tile({tileData}) {
 
         <div className="tagWrapper">
           <div className="tagRow">
-            <div className="content">{tileData.class}</div>
+            <div className="content">{tileData.type}</div>
             <div className="content">{tileData.length / 60 + " hr"}</div>
           </div>
           <div className="tagRow">

@@ -1,0 +1,60 @@
+.dropbtn {
+    border-width: 1px 1px 1px 3px;
+    margin-bottom: 0;
+}
+
+.dropbtn:active {
+    transform: scale(1);
+}
+
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+    /* min-width: 100px; */
+    /* margin-bottom: 10px; */
+    margin-left: 2.5px;
+    margin-right: 2.5px;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    width: auto;
+    z-index: 10;
+}
+
+/* format the button in dropdown */
+.dropdown-element {
+    border-width: 0;
+    padding: 7px 5px;
+    border-radius: 0px !important;
+    margin: 0 !important;
+    float: left;
+    left: 1%;
+    text-align: left;
+    height: 60%;
+    width: 80%;
+}
+
+.dropdown-element:hover {
+    background-color: #F7F7F7;
+}
+
+.dropdown-element:active {
+    border-width: 0px 0px 0px 2px;
+    transform: scale(1);
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+    background-color: grey;
+}
