@@ -1,4 +1,4 @@
-const Recommendations = () => {
+const Forum = () => {
     return (
         <div>
             <h1>Uh Ohhh</h1>
@@ -6,4 +6,4 @@ const Recommendations = () => {
     )
 }
 
-export default Recommendations;
+export default Forum;
