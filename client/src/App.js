@@ -12,7 +12,7 @@ import Landing from "./pages/Landing"
 import Home from "./pages/Home"
 import CheckIn from "./pages/Check-in"
 import FlightInfo from "./pages/Flight-info"
-import Recommendations from "./pages/Recommendations"
+import Recommendations from "./pages/forum/Recommendations"
 
 const socket = io.connect("http://localhost:3001");
 
