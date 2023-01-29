@@ -5,8 +5,11 @@ import { useEffect, useState } from "react";
 import logo_image from "./images/logo_wbg.png";
 import logo_anim from './images/animated_logo_trans.gif';
 import logo_trans from './images/logo_trans.png';
+import user_icon from './images/user-icon.png';
+import logout from './images/logout.svg';
 
 import Header from "./components/Header"
+import Menu from "./components/Menu"
 import Chat from "./pages/Chat";
 import Landing from "./pages/Landing"
 import Home from "./pages/Home"
@@ -17,104 +20,221 @@ import Forum from "./pages/forum/Forum"
 const socket = io.connect("http://localhost:3001");
 
 function App() {
-  const [username, setUsername] = useState("");
-  const [flightNum, setFlightNum] = useState("");
-  // const [room, setRoom] = useState("");
-  const [roomState, setRoomState] = useState('wrong')
-  // useEffect(() => {
-  //   console.log('room is', room)
-  // },[room])
+  const [username, setUsername] = useState("TEMPUSER");
+  const [flightNum, setFlightNum] = useState("TMP113");
+  const [pageState, setPageState] = useState(1);
+  
+  /* Code for LANDING/CHECKIN */
+  //---------------------------------------------------
+  const onEnterUsername = (event) => {
+    setUsername(event.target.value);
+  }
+  const onEnterFlightNum = (event) => {
+    setFlightNum(event.target.value);
+  }
+  function onClickGo () {
+    setPageState(2);
+  }
+  //---------------------------------------------------
 
-  let room = "";
-
-  function joinRoom() {
-      room = 'AA1234';
+  /* Code for CHAT */
+  // ----------------------------------------------------
+  function onGoToChat() {
+    setPageState(4);
+  }
+  const socket = io.connect("http://localhost:3001");
+  const [roomState, setRoomState] = useState("defaultRoom");
+    const joinRoom = () => {
+      let room = flightNum;
       if (username !== "" && room !== "") {
         console.log(username, '-', room)
         socket.emit("join_room", room);
       }
       setRoomState(room);
     }
-    
+
+    const [currentMessage, setCurrentMessage] = useState("");
+    const [messageList, setMessageList] = useState([]);
+  
+    const sendMessage = async () => {
+      if (currentMessage !== "") {
+        const messageData = {
+          room: flightNum,
+          author: username,
+          message: currentMessage,
+          time:
+            new Date(Date.now()).getHours() +
+            ":" +
+            new Date(Date.now()).getMinutes(),
+        };
+  
+        await socket.emit("send_message", messageData);
+        setMessageList((list) => [...list, messageData]);
+        setCurrentMessage("");
+      }
+    };
+  
+    useEffect(() => {
+      socket.on("receive_message", (data) => {
+        console.log(username, 'received', data)
+        if(!messageList.includes(data)) {
+          setMessageList((list) => [...list, data]);
+        }
+      });
+    }, [socket]);
+
+    //---------------------------------------------------
+
+    /*Code for FLIGHT INFO*/
+    //---------------------------------------------------
+    var flightInfoDict = {
+      ICAO: 'AAL',
+      flightNum: 1872,
+      IATA:'AA',
+      dep_airport: 'IAH',
+      dep_city: 'Houston',
+      dep_state: 'Texas',
+      dep_country: 'United States',
+      t_now: new Date(),
+      dep_time: (new Date()).getTime(),
+      gate: 22,
+      terminal: 'A',
+      dest_airport: 'CMH',
+      dest_city: 'Columbus',
+      dest_state: 'Ohio',
+      dest_country: 'United States',
+      dest_time: (new Date()).getTime(),
+      status: 'On-time',
+    }
+    //---------------------------------------------------
+
+    /* Code for FORUM/RECS*/
+    //---------------------------------------------------
+    //---------------------------------------------------
 
   return (
-    <BrowserRouter>
-      <div className="App">
-        {/*
-        { pageState === 1 ? (
-          <div className="joinChatContainer">
-            <h1 className="home-heading">Tindair</h1> 
-            <div>
-              <img src={logo_anim} alt="this is big boi logo image" class="center"/>
-            </div>
-            <button className="button-main" onClick={incrementPageState}>Get Started</button>
-          </div>
-          ) : pageState === 2 ? (
+    <div className="App">
+      { pageState === 1 ? 
+        (
           <div>
-            <h3>Please enter a good name for you :)</h3>
-            <input class="username-input" type="text" placeholder="Your name..." onChange={onEnterUsername}></input>
-            <button className="button-main" onClick={incrementPageState}>Go</button>
-          </div>)
-          : pageState === 3 ? (
-            <div className="airport-selection">
-            <h3>Select your departure airport</h3>
-            <div className="custom-select">
-              <select className="selector" value={departure} onInput={onSetDeparture}>
-                <option value="ABI">ABI</option>
-                <option value="AMA">AMA</option>
-                <option value="AUS">AUS</option>
-                <option value="BPT">BPT</option>
-                <option value="BRO">BRO</option>
-                <option value="CLL">CLL</option>
-                <option value="CRP">CRP</option>
-                <option value="DAL">DAL</option>
-                <option value="DFW">DFW</option>
-                <option value="EAS">EAS</option>
-                <option value="ELP">ELP</option>
-                <option value="HRL">HRL</option>
-                <option value="IAH">IAH</option>
-                <option value="HOU">HOU</option>
-                <option value="GRK">GRK</option>
-                <option value="LAX">LAX</option>
-              </select>
-            </div>
-            <button className="button-main sub" onClick={incrementPageState}>Next</button>
-            </div>
-        ) : pageState == 4 ? (
+            <h1 className="home-heading">Project Name</h1> 
             <div>
-            <h3>Select your arrival airport</h3>
-            <select className="selector" value={arrival} onInput={onSetArrival}>
-            <option value="ABI">ABI</option>
-                <option value="AMA">AMA</option>
-                <option value="AUS">AUS</option>
-                <option value="BPT">BPT</option>
-                <option value="BRO">BRO</option>
-                <option value="CLL">CLL</option>
-                <option value="CRP">CRP</option>
-                <option value="DAL">DAL</option>
-                <option value="DFW">DFW</option>
-                <option value="EAS">EAS</option>
-                <option value="ELP">ELP</option>
-                <option value="HRL">HRL</option>
-                <option value="IAH">IAH</option>
-                <option value="HOU">HOU</option>
-                <option value="GRK">GRK</option>
-                <option value="LAX">LAX</option>
-            </select>
-            <button className="button-main sub" onClick={joinRoom}>Next</button>
+              <img src={logo_anim} class="center"/>
+            </div>
+            <div>Please enter a good name for you :)</div>
+              <input class="username-input" type="text" placeholder="Your name..." onChange={onEnterUsername}></input>
+            <div>Please enter your flight number</div>
+              <input class="username-input" type="text" placeholder="For example AA1234..." onChange={onEnterFlightNum}></input>
+              <button className="button-main" onClick={onClickGo}>
+                  <div class="go-button">
+                      <div>Go</div>
+                      <div><img src={logo_trans} class="go-image" style={{display: "inline-block"}}/></div>
+                  </div>
+              </button>
           </div>
-        ) : (<div>
-              <Chat socket={socket} username={username} room={roomState} />
-            </div>)} */}
-      </div>
-      <Routes>
-        <Route path="/" element={<Landing username={username} setUsername={setUsername} flightNum={flightNum} setFlightNum={setFlightNum}/>} exact />
-        <Route path='/home' element={ <Home username={username} flightNum={flightNum}/> }/>
-        <Route path='/flight-info' element={ <FlightInfo/> }/>
-        <Route path='/forum' element={ <Forum/> }/>
-        <Route path="/chat" element={ <Chat/> } />
-      </Routes>
-    </BrowserRouter>
+        ) : pageState === 2 ? (
+          <div class="Home">
+            <div class="app-nav-header">
+                <img class="navbar-image" src={logo_trans}></img>
+                <img class="navbar-image" src={user_icon}></img>
+                <img class="navbar-image" src={logout}></img>
+            </div>
+            <div class="title-text">
+                <h1>Welcome, {username}</h1>
+                <h2>{flightNum}</h2>
+            </div>
+            <div style={{flex: 1, height: '1px', backgroundColor: 'black', margin: '15px'}} />
+            <div class="tabs">
+                <div class="navtab-row">
+                    <div class="navtab">
+                        <div>FLIGHT INFO</div>
+                    </div>
+                    <div class="navtab">
+                        <div>RECOMMENDATIONS</div>
+                    </div>
+                </div>
+                <div class="navtab-row">
+                    <div class="navtab">
+                        <div>FORUMS</div>
+                    </div>
+                    <div class="navtab">
+                        <div>LOL</div>
+                    </div>
+                </div>
+                <div class="chat-window" onClick={onGoToChat}>
+                    CHAT
+                </div>
+            </div>
+          </div>
+        )  : pageState === 3 ? (
+          <div class='background'>
+            <div class="header">
+                <button class="titleButton returnButton">Return</button>
+                {/* <button id="recButton" class={"titleButton recButton " + ((window === "rec") ? "selected" : "")} onClick={() => setWindow("rec")}>Recommendations</button>
+                <button id="discButton" class={"titleButton discButton " + ((window === "disc") ? "selected" : "")} onClick={() => setWindow("disc")}>Discussion</button> */}
+            </div>
+            <h1>Flight Information</h1>
+            <a href={"https://flightaware.com/live/flight/" + flightInfoDict.ICAO + flightNum} target='_blank'>
+                <button className="button-main">View Location</button>
+            </a>
+            <div>Flight Number: {flightInfoDict.IATA + flightNum}</div>
+            <div>Gate: {flightInfoDict.terminal + flightInfoDict.gate}</div>
+            <div>{flightInfoDict.dep_airport} + {'->'}  + {flightInfoDict.dest_airport}</div>
+            <div>{flightInfoDict.dep_city}, {flightInfoDict.dep_state}  to  {flightInfoDict.dest_city}, {flightInfoDict.dest_state}</div>  
+        </div>
+      ) : pageState === 4 ? (
+        <div class="chat-background">
+          <div class="chat-header">
+            <div class="room-title">{flightNum}</div>
+          </div>
+          <div class="chat-body" id="scrollableChatBox">
+              {messageList.map((messageContent) => {
+                return (
+                  <div
+                    class="message"
+                    id={username === messageContent.author ? "you" : "other"}
+                  >
+                    <div>
+                      <div class="message-content">
+                        <p>{messageContent.message}</p>
+                      </div>
+                      <div class="message-meta">
+                        <p id="time">{messageContent.time}</p>
+                        <p id="author">{messageContent.author}</p>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+          </div>
+          <div class="chat-footer">
+            <input
+              type="text"
+              value={currentMessage}
+              placeholder="Hey..."
+              onChange={(event) => {
+                setCurrentMessage(event.target.value);
+              }}
+              onKeyPress={(event) => {
+                event.key === "Enter" && sendMessage();
+              }}
+            />
+            <button onClick={sendMessage}>&#9658;</button>
+          </div>
+        </div>
+      ) : pageState === 5 || pageState === 6 ? (
+            <>
+              {/* <Menu window={window} setWindow={setWindow} menuItems={menuOptions}/>
+              <div class="mainBody">
+                  <div>{
+                      (pageState === 5) 
+                          ? <Recs params={params}></Recs>
+                          : <Discussion></Discussion>
+                  }</div>
+              </div> */}
+            </>
+      ) : (<></>) }
+    </div>
   );
 }
 

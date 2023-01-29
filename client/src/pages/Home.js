@@ -4,7 +4,7 @@ import user_icon from '../images/user-icon.png';
 import logout from '../images/logout.svg';
 import "./Home.css";
 
-const Home = ({username, flightNum}) => {
+const Home = ({username, flightNum, joinRoom}) => {
     return (
         <div class="Home">
             <div class="app-nav-header">
