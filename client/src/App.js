@@ -46,7 +46,7 @@ function App() {
       alert("Please enter a flight number!");
     }
     else if(username !== "" && flightNum !== "") {
-      setPageState(2);
+      setPageState("home");
     }
   }
   //---------------------------------------------------
@@ -54,7 +54,7 @@ function App() {
   /* Code for CHAT */
   // ----------------------------------------------------
   function onGoToChat() {
-    setPageState(4);
+    setPageState("chat");
     joinRoom();
   }
   const socket = io.connect("http://localhost:3001");
@@ -211,7 +211,7 @@ function App() {
                     id={username === messageContent.author ? "you" : "other"}
                   >
                     <div>
-                      <div class="message-content">
+                      <div class="message-content" id={messageContent.author===username ? 'by-user' : 'by-other'}>
                         <p>{messageContent.message}</p>
                       </div>
                       <div class="message-meta">
