@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Tile from './Tile';
+import Tile from '../../components/Tile';
 
 function Recs({params}) {
 
@@ -13,7 +13,7 @@ function Recs({params}) {
                 month: 1,
                 year: 2023,
             },
-            class: "activity",
+            type: "activity",
             length: 180,
             insideSecurity: false,
             price: 30,
@@ -28,7 +28,7 @@ function Recs({params}) {
                 month: 1,
                 year: 2023,
             },
-            class: "food",
+            type: "food",
             length: 90,
             price: 5,
             insideSecurity: true,
@@ -43,8 +43,9 @@ function Recs({params}) {
                 month: 1,
                 year: 2023,
             },
-            class: "activity",
+            type: "activity",
             length: 240,
+            location: "outside",
             insideSecurity: false,
             location: "Aggie Park",
             msg: "Aggie Park is a great place to kill time during a long layover!",
@@ -53,17 +54,28 @@ function Recs({params}) {
     ]
 
     function compare(data, params) {
-        if (params.type && data.type != params.type){
-            console.log("compare failed for data " + data + " and params " + params);
-            return false;
+
+        for (const [key, _] of Object.entries(params)){
+            if (!data.hasOwnProperty(key) || data[key] != params[key])
+                return false;
         }
 
         return true;
+
+        // if (params.hasOwnProperty("type") && params["type"] != data.type)
+        //     return false;
+
+        // if (params.hasOwnProperty("insideSecurity") && params.insideSecurity != data.insideSecurity)
+        //     return false;
+
+        // if (params.hasOwnProperty("insideSecurity") && params.insideSecurity != data.insideSecurity)
+        //     return false;
+
+        // return true;
     }
 
     const tileList = tiles.map(tile =>
-        // compare(tile, params) && <Tile key={tile.id} tileData={tile} />
-        <Tile key={tile.id} tileData={tile} />
+        (compare(tile, params)) && <Tile key={tile.id} tileData={tile} />
     );
 
     return (

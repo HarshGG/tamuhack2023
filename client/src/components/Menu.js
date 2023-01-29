@@ -2,15 +2,7 @@
 import React from 'react'
 
 function Menu({window, setWindow, menuItems}) {
-    const menuElems = menuItems.map(opt =>
-        <button 
-            key={opt}
-            className={"titleButton " + ((window === {opt}) ? "selected" : "")} 
-            onClick={() => setWindow(opt)}>
-                {opt}
-        </button>
 
-    );
   return (
     <div>
         <div className="header">
