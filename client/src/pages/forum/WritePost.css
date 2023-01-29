@@ -1,0 +1,69 @@
+.navButton {
+    background-color: lightgrey;
+    color: #fff;
+    display: inline-block;
+    border-width: 0;
+    border-radius: 2vw;
+    font-size: 4vw;
+    position: relative;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+    padding: 1vw 2vw;
+    margin: 1vw 1vw;
+}
+
+.selectWrapper.titleButton{
+    font-size: 4vw;
+}
+
+.navWrapper {
+    display: flex;
+    margin: 10vw 0;
+}
+
+.navLeft {
+    width: 50%;
+    display: flex;
+    justify-content: left;
+}
+
+.navRight {
+    width: 50%;
+    display: flex;
+    justify-content: right;
+}
+
+.selectElement{
+    display: flex;
+    justify-content: left;
+    margin-bottom: 3vw;
+}
+
+.selectHeading {
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    font-size: 5vw;
+    margin-right: 1vw;
+}
+
+textarea {
+    border-width: 0;
+    border-radius: 2vw;
+    background-color: lightgrey;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3vw;
+    line-height: 3vw;
+
+    padding: 1vw 1vw;
+}
+
+.msgText {
+    width: 100%;
+    height: 30vw;
+    margin-bottom: 10vw;
+}

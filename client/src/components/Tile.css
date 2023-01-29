@@ -4,7 +4,7 @@ viewport width: vw
 viewport height: vh
  */
 .tileBox {
-    background-color: lightgrey;
+    background-image: linear-gradient(135deg, #c3d8e7 0%, #bbccd8 50%, #b9defc 100%);
     border-radius: 2vw;
     margin-bottom: 5%;
     padding: 2%;
@@ -17,7 +17,7 @@ viewport height: vh
 
 /* name, date, location */
 .headingWrapper {
-    width: 70%;
+    width: 65%;
     margin-bottom: 2%
 }
 
@@ -39,7 +39,7 @@ viewport height: vh
 
 /* Tags */
 .tagWrapper {
-    width: 30%; 
+    width: 35%; 
     display: grid;  
 }
 
@@ -51,7 +51,7 @@ viewport height: vh
 }
 
 .tagWrapper .content{
-    background-color: grey;
+    background-image: linear-gradient(135deg, #ff9a8b 0%, #ffaca0 50%, #f5aca1 100%);
     padding: .5vw 1vw;
     border-radius: 2vw;
     margin: auto;
@@ -91,9 +91,9 @@ viewport height: vh
 }
 
 .upvote.pressed {
-    color: green;
+    color: #FE654F;
 }
 
 .downvote.pressed {
-    color: red;
+    color: #467599;
 }

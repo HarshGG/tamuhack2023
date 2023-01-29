@@ -46,7 +46,7 @@ function App() {
       alert("Please enter a flight number!");
     }
     else if(username !== "" && flightNum !== "") {
-      setPageState(2);
+      setPageState("home");
     }
   }
   //---------------------------------------------------
@@ -54,7 +54,7 @@ function App() {
   /* Code for CHAT */
   // ----------------------------------------------------
   function onGoToChat() {
-    setPageState(4);
+    setPageState("chat");
     joinRoom();
   }
   const socket = io.connect("http://localhost:3001");
@@ -195,7 +195,7 @@ function App() {
         // forum
         ) : pageState === "forum" ? (
           <div>
-            <Forum/>
+            <Forum username={username}/>
           </div>
         // Chat
       ) : pageState === "chat" ? (
@@ -211,7 +211,7 @@ function App() {
                     id={username === messageContent.author ? "you" : "other"}
                   >
                     <div>
-                      <div class="message-content">
+                      <div class="message-content" id={messageContent.author===username ? 'by-user' : 'by-other'}>
                         <p>{messageContent.message}</p>
                       </div>
                       <div class="message-meta">
@@ -235,21 +235,12 @@ function App() {
                 event.key === "Enter" && sendMessage();
               }}
             />
-            <button onClick={sendMessage}>&#9658;</button>
+            <button onClick={sendMessage}>
+              <div><img src={logo_trans} class="go-image"/></div>
+            </button>
           </div>
         </div>
-      ) : pageState === 5 || pageState === 6 ? (
-            <>
-              {/* <Menu window={window} setWindow={setWindow} menuItems={menuOptions}/>
-              <div class="mainBody">
-                  <div>{
-                      (pageState === 5) 
-                          ? <Recs params={params}></Recs>
-                          : <Discussion></Discussion>
-                  }</div>
-              </div> */}
-            </>
-      ) : (<></>) }
+      ) : (<>404</>) }
     </div>
   );
 }
