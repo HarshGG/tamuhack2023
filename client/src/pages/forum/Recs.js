@@ -5,6 +5,8 @@ import "./Recs.css"
 
 function Recs({tiles, setWritingPost}) {
 
+    console.log("tiles:", tiles);
+
     // sorting parameters
     const [params, setParams] = useState({});
 

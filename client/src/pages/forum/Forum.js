@@ -61,7 +61,7 @@ function Forum({username}) {
             votes: 1,
         },
         {
-            id: 2,
+            id: 3,
             name: "Jerry Kurtin",
             date: {
                 day: 29,
@@ -81,7 +81,10 @@ function Forum({username}) {
     function addPost(post){
         console.log("adding post")
         var currTiles = tiles;
+        post.id = currTiles.length;
         currTiles.push(post);
+
+        setTiles(currTiles);
 
         setWritingPost(false);
     }
