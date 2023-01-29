@@ -3,6 +3,7 @@ import "./Dropbtn.css"
 
 function Dropbtn({heading, currOpt, setCurrOpt, options}) {
 
+    console.log("current option:", currOpt);
     console.log("options:", options);
     return (
         <div class="dropdown">

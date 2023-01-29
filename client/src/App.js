@@ -195,7 +195,7 @@ function App() {
         // forum
         ) : pageState === "forum" ? (
           <div>
-            <Forum/>
+            <Forum username={username}/>
           </div>
         // Chat
       ) : pageState === "chat" ? (

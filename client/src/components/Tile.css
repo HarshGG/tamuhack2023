@@ -17,7 +17,7 @@ viewport height: vh
 
 /* name, date, location */
 .headingWrapper {
-    width: 70%;
+    width: 65%;
     margin-bottom: 2%
 }
 
@@ -39,7 +39,7 @@ viewport height: vh
 
 /* Tags */
 .tagWrapper {
-    width: 30%; 
+    width: 35%; 
     display: grid;  
 }
 

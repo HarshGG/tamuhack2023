@@ -57,14 +57,12 @@ export default function Tile({tileData}) {
         <div className="tagWrapper">
           <div className="tagRow">
             <div className="content">{tileData.type}</div>
-            <div className="content">{tileData.length / 60 + " hr"}</div>
+            <div className="content">{(tileData.length) && tileData.length}</div>
           </div>
           <div className="tagRow">
             <div className="content">{tileData.insideSecurity ? ("airport") : ("outside")}</div>
             <div className="content">{
-              (tileData.price && tileData.price > 0) 
-                ? "$" + tileData.price
-                : "Free"
+              ((tileData.price) && tileData.price)
             }</div>
           </div>
         </div>

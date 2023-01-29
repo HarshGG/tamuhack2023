@@ -1,70 +1,87 @@
 import React, { useState } from 'react'
 import Tile from '../../components/Tile';
 import Dropbtn from '../../components/Dropbtn';
+import "./Recs.css"
 
-function Recs() {
+function Recs({tiles, setWritingPost}) {
 
-    // const params = {
-    //     type: "food",
-    //     insideSecurity: true,
-    // };
-
+    // sorting parameters
     const [params, setParams] = useState({});
 
-    const [typeFilter, setTypeFilter] = useState("all");
-    const typeOptions = ["all", "food", "activity", "general"];
+    // filters to sort
+    const [typeFilter, setTypeFilter] = useState("any");
+    const typeOptions = ["any", "food", "activity", "general"];
+    const [securityFilter, setSecurityFilter] = useState("any");
+    const securityOptions = ["any", "inside", "outside"];
+    const [priceFilter, setPriceFilter] = useState("any");
+    const priceOptions = ["any", "Free", "<$20", "$20-$40", ">$40"];
+    const [lengthFilter, setLengthFilter] = useState("any");
+    const lengthOptions = ["any", "<.5 hr", ".5-1 hr", "1-2 hr", ">2 hr"];
 
-    // temporary tiles for debugging
-    var tiles = [
-        {
-            id: 0,
-            name: "Vinay Mannem",
-            date: {
-                day: 28,
-                month: 1,
-                year: 2023,
-            },
-            type: "activity",
-            length: 180,
-            insideSecurity: false,
-            price: 30,
-            location: "StoneCo Climbing",
-            msg: "I went climbing at a local gym called StoneCo during my layover. Try it out!",
-        },
-        {
-            id: 1,
-            name: "Harsh Gangaramani",
-            date: {
-                day: 14,
-                month: 1,
-                year: 2023,
-            },
-            type: "food",
-            length: 90,
-            price: 5,
-            insideSecurity: true,
-            location: "Starbucks",
-            msg: "Starbucks near gate 11 has great latte art!"
-        },
-        {
-            id: 2,
-            name: "Rahul Ayanampudi",
-            date: {
-                day: 26,
-                month: 1,
-                year: 2023,
-            },
-            type: "activity",
-            length: 240,
-            location: "outside",
-            insideSecurity: false,
-            location: "Aggie Park",
-            msg: "Aggie Park is a great place to kill time during a long layover!",
+    function setTypeParam(newParam){
+        const paramsCopy = params;
+        setTypeFilter(newParam);
+        if (newParam === "any"){
+            delete paramsCopy["type"];
         }
+        else {
+            paramsCopy["type"] = newParam;
+        }
+        setParams(paramsCopy);
 
-    ]
+        console.log("setting params to", paramsCopy);
+    }
 
+    function setSecurityParam(newParam){
+        const paramsCopy = params;
+        setSecurityFilter(newParam);
+        if (newParam === "any"){
+            delete paramsCopy["insideSecurity"];
+        }
+        else {
+            if (newParam == "inside")
+                paramsCopy["insideSecurity"] = true;
+            else
+                paramsCopy["insideSecurity"] = false;
+        }
+        setParams(paramsCopy);
+
+        console.log("setting params to", paramsCopy);
+    }
+
+    function setPriceParam(newParam){
+        const paramsCopy = params;
+        setPriceFilter(newParam);
+        if (newParam === "any"){
+            delete paramsCopy["price"];
+        }
+        else {
+            paramsCopy["price"] = newParam;
+        }
+        setParams(paramsCopy);
+
+        console.log("setting params to", paramsCopy);
+    }
+
+    function setLengthParam(newParam){
+        const paramsCopy = params;
+        setLengthFilter(newParam);
+        if (newParam === "any"){
+            delete paramsCopy["length"];
+        }
+        else {
+            paramsCopy["length"] = newParam;
+        }
+        setParams(paramsCopy);
+
+        console.log("setting params to", paramsCopy);
+    }
+
+    
+
+    
     function compare(data, params) {
+        console.log("comparing ", data, " with ", params);
 
         for (const [key, _] of Object.entries(params)){
             if (!data.hasOwnProperty(key) || data[key] != params[key])
@@ -72,17 +89,6 @@ function Recs() {
         }
 
         return true;
-
-        // if (params.hasOwnProperty("type") && params["type"] != data.type)
-        //     return false;
-
-        // if (params.hasOwnProperty("insideSecurity") && params.insideSecurity != data.insideSecurity)
-        //     return false;
-
-        // if (params.hasOwnProperty("insideSecurity") && params.insideSecurity != data.insideSecurity)
-        //     return false;
-
-        // return true;
     }
 
     const tileList = tiles.map(tile =>
@@ -92,10 +98,15 @@ function Recs() {
     return (
         <div>
             <h2>Filter</h2>
-            <Dropbtn heading={"Type"} currOpt={typeFilter} setCurrOpt={setTypeFilter} options={typeOptions}/>
+            <Dropbtn heading={"Type"} currOpt={typeFilter} setCurrOpt={setTypeParam} options={typeOptions}/>
+            <Dropbtn heading={"Security"} currOpt={securityFilter} setCurrOpt={setSecurityParam} options={securityOptions}/>
+            <Dropbtn heading={"Price"} currOpt={priceFilter} setCurrOpt={setPriceParam} options={priceOptions}/>
+            <Dropbtn heading={"Length"} currOpt={lengthFilter} setCurrOpt={setLengthParam} options={lengthOptions}/>
+
+
             <h2>Posts</h2>
+            <div class="newTile" onClick={() => setWritingPost(true)}>add an experience</div>
             {tileList}
-            {/* <Tile tileData={tiles[2]}/> */}
         </div>
     );
 }

@@ -14,11 +14,11 @@
 .bigBox {
     background-color: rgb(225, 156, 29);
     border-radius: 2vw;
-    margin-left: 5%;
-    margin-right: 5%;
+    margin-left: 11%;
+    margin-right: 11%;
     margin-top: 5%;
     margin-bottom: 2.5%;
-    padding: 5%;
+    padding: 2%;
   }
 
 .box {
@@ -37,6 +37,8 @@
   }
 
 .center {
+    font-weight: bold;
+    text-decoration: underline;
     text-align: center;
   }
 
