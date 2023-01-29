@@ -20,7 +20,6 @@ const Forum = () => {
     return (
         <>
             <Dropbtn heading={"Type"} currOpt={typeFilter} setCurrOpt={setTypeFilter} options={typeOptions}/>
-            <Menu window={window} setWindow={setWindow} menuItems={menuOptions}/>
             <div class="mainBody">
                 <div>{
                     (window === "Forum") 

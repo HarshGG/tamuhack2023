@@ -1,6 +1,6 @@
 .dropbtn {
-    border-width: 0 0 0 .75vw;
-    margin-bottom: 0;
+    border-width: 0 0 0 1vw !important;
+    margin-bottom: 0 !important;
 }
 
 .dropbtn:active {

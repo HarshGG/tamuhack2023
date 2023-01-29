@@ -1,5 +1,6 @@
 // rfce
-import React from 'react'
+import React from 'react';
+import "./Menu.css";
 
 function Menu({window, setWindow, menuItems}) {
 
