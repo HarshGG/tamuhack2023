@@ -47,6 +47,7 @@ function WritePost({username, setWritingPost, addPost}) {
             insideSecurity: securityFilter,
             location: loc,
             msg: msg,
+            votes: 0,
         }
 
         addPost(post);
