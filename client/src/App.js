@@ -137,6 +137,7 @@ function App() {
         <Route path='/home' element={ <Home/> }/>
         <Route path='/flight-info' element={ <FlightInfo/> }/>
         <Route path='/recommendations' element={ <Recommendations/> }/>
+        <Route path="/chat" element={ <Chat/> } />
       </Routes>
     </BrowserRouter>
   );

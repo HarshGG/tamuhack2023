@@ -1,9 +1,20 @@
 import React, { useEffect, useState } from "react";
 import ScrollToBottom from "react-scroll-to-bottom";
+import io from "socket.io-client";
 
-function Chat({ socket, username, room }) {
+import "../App.css"
+
+function Chat({ username }) {
   const [currentMessage, setCurrentMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
+
+  const socket = io.connect("http://localhost:3001");
+  let room = "IAHJFK";
+  room = "AA1234";
+  if (username !== "" && room !== "") {
+    console.log(username, '-', room)
+    socket.emit("join_room", room);
+  }
 
   const sendMessage = async () => {
     if (currentMessage !== "") {
