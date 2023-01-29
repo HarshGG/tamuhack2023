@@ -7,6 +7,11 @@ import logo_anim from './images/animated_logo_trans.gif';
 import logo_trans from './images/logo_trans.png';
 import user_icon from './images/user-icon.png';
 import logout from './images/logout.svg';
+import nyc from './images/nyc.jpg';
+import hou from './images/hou.jpg';
+import info_icon from './images/info-icon.png';
+import forum from './images/forum.png';
+import chat_img from './images/chat.png'
 
 import Header from "./components/Header"
 import Menu from "./components/Menu"
@@ -41,7 +46,7 @@ function App() {
       alert("Please enter a flight number!");
     }
     else if(username !== "" && flightNum !== "") {
-      setPageState(2);
+      setPageState("home");
     }
   }
   //---------------------------------------------------
@@ -49,7 +54,7 @@ function App() {
   /* Code for CHAT */
   // ----------------------------------------------------
   function onGoToChat() {
-    setPageState(4);
+    setPageState("chat");
     joinRoom();
   }
   const socket = io.connect("http://localhost:3001");
@@ -117,6 +122,15 @@ function App() {
       dest_time: (new Date()).getTime(),
       status: 'On-time',
     }
+
+    function onGoToForum() {
+      setPageState("forum");
+    }
+
+    function onGoToFlightInfo() {
+      setPageState("flight info");
+    }
+
     //---------------------------------------------------
 
     /* Code for FORUM/RECS*/
@@ -130,53 +144,54 @@ function App() {
       { pageState === "exit" ? 
         (
           <div class="basic-background">
-            <h1 class="home-heading">Project Name</h1> 
+            <h1 class="home-heading">Flock</h1> 
+            <h3 class="home-sub-heading">The One Stop Airport Social Media</h3>
             <div>
               <img src={logo_anim} class="center"/>
             </div>
-            <div>Please enter a good name for you :)</div>
-              <input class="username-input" type="text" placeholder="Your name..." onChange={onEnterUsername}></input>
-            <div>Please enter your flight number</div>
-              <input class="username-input" type="text" placeholder="For example AA1234..." onChange={onEnterFlightNum}></input>
-              <button class="button-main" onClick={onClickGo}>
-                  <div class="go-button">
-                      <div>Go</div>
-                      <div><img src={logo_trans} class="go-image" style={{display: "inline-block"}}/></div>
-                  </div>
-              </button>
+            <div class="landing-container">
+              <div>Please enter a good name for you</div>
+                <input class="username-input" type="text" placeholder="Your name..." onChange={onEnterUsername}></input>
+              <div>Please enter your flight number</div>
+                <input class="username-input" type="text" placeholder="For example AA1234..." onChange={onEnterFlightNum}></input>
+                <button class="button-main" onClick={onClickGo}>
+                    <div>Go</div>
+                    <div><img src={logo_trans} class="go-image"/></div>
+                </button>
+              </div>
           </div>
         // Home page
         ) : pageState === "home" ? (
           <div class="Home">
-            <div class="app-nav-header">
-                <img class="navbar-image" src={logo_trans}></img>
-                <img class="navbar-image" src={user_icon}></img>
-                <img class="navbar-image" src={logout}></img>
+            <div class="home-title-text">
+                <div class="home-welcome">Welcome, {username}</div>
             </div>
-            <div class="title-text">
-                <h1>Welcome, {username}</h1>
-                <h2>{flightNum}</h2>
+            <div class="home-sub-title-container">
+              <div class="home-sub-title">
+                  <div><h2 class="home-flightnum">{flightNum}</h2></div>
+                  <div><h2 class="flight-status">On-Time</h2></div>
+              </div>
             </div>
             <div style={{flex: 1, height: '1px', backgroundColor: 'black', margin: '15px'}} />
+            <div class="city-images">
+              <img class="city-image" src={hou}/>
+              <img class="city-image" src={nyc}/>
+            </div>
             <div class="tabs">
                 <div class="navtab-row">
-                    <div class="navtab">
-                        <div>FLIGHT INFO</div>
-                    </div>
-                    <div class="navtab">
-                        <div>RECOMMENDATIONS</div>
+                    <div class="navtab" style={{width: "100%"}} onClick={onGoToFlightInfo}>
+                        <img src={info_icon} style={{height: "20px", width: "20px", paddingRight: "10px"}}></img>
+                        <div>MORE ABOUT YOUR FLIGHT</div>
                     </div>
                 </div>
                 <div class="navtab-row">
-                    <div class="navtab">
-                        <div>FORUMS</div>
+                    <div class="navtab" style={{width: "70%"}} onClick={onGoToForum}>
+                      <img src={forum} style={{height: "20px", width: "20px", paddingRight: "10px"}}></img>
+                          <div>FORUMS</div>
                     </div>
-                    <div class="navtab">
-                        <div>LOL</div>
+                    <div class="navtab" style={{width: "30%"}} onClick={onGoToChat}>
+                      <img src={chat_img} class="chat-icon"></img>
                     </div>
-                </div>
-                <div class="chat-window" onClick={onGoToChat}>
-                    CHAT
                 </div>
             </div>
           </div>
@@ -189,7 +204,7 @@ function App() {
         // forum
         ) : pageState === "forum" ? (
           <div>
-            <Forum/>
+            <Forum username={username}/>
           </div>
         // Chat
       ) : pageState === "chat" ? (
@@ -205,7 +220,7 @@ function App() {
                     id={username === messageContent.author ? "you" : "other"}
                   >
                     <div>
-                      <div class="message-content">
+                      <div class="message-content" id={messageContent.author===username ? 'by-user' : 'by-other'}>
                         <p>{messageContent.message}</p>
                       </div>
                       <div class="message-meta">
@@ -229,21 +244,12 @@ function App() {
                 event.key === "Enter" && sendMessage();
               }}
             />
-            <button onClick={sendMessage}>&#9658;</button>
+            <button onClick={sendMessage}>
+              <div><img src={logo_trans} class="go-image"/></div>
+            </button>
           </div>
         </div>
-      ) : pageState === 5 || pageState === 6 ? (
-            <>
-              {/* <Menu window={window} setWindow={setWindow} menuItems={menuOptions}/>
-              <div class="mainBody">
-                  <div>{
-                      (pageState === 5) 
-                          ? <Recs params={params}></Recs>
-                          : <Discussion></Discussion>
-                  }</div>
-              </div> */}
-            </>
-      ) : (<></>) }
+      ) : (<>404</>) }
     </div>
   );
 }

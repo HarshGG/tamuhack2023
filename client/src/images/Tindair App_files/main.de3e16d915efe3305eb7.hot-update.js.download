@@ -1,0 +1,26 @@
+webpackHotUpdate("main",{
+
+/***/ "./node_modules/css-loader/dist/cjs.js?!./node_modules/postcss-loader/src/index.js?!./src/pages/forum/WritePost.css":
+/*!******************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ref--5-oneOf-4-1!./node_modules/postcss-loader/src??postcss!./src/pages/forum/WritePost.css ***!
+  \******************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(true);
+// Module
+___CSS_LOADER_EXPORT___.push([module.i, ".navButton {\r\n    background-color: grey;\r\n    color: grey;\r\n    display: inline-block;\r\n    border-width: 0;\r\n    border-radius: 2vw;\r\n    font-size: 4vw;\r\n    position: relative;\r\n    text-align: center;\r\n    vertical-align: middle;\r\n    white-space: nowrap;\r\n    padding: 1vw 2vw;\r\n    margin: 1vw 1vw;\r\n}\r\n\r\n.selectWrapper.titleButton{\r\n    font-size: 4vw;\r\n}\r\n\r\n.navWrapper {\r\n    display: flex;\r\n    margin: 10vw 0;\r\n}\r\n\r\n.navLeft {\r\n    width: 50%;\r\n    display: flex;\r\n    justify-content: left;\r\n}\r\n\r\n.navRight {\r\n    width: 50%;\r\n    display: flex;\r\n    justify-content: right;\r\n}\r\n\r\n.selectElement{\r\n    display: flex;\r\n    justify-content: left;\r\n    margin-bottom: 3vw;\r\n}\r\n\r\n.selectHeading {\r\n    display: flex;\r\n    /* justify-content: center; */\r\n    align-items: center;\r\n    font-size: 5vw;\r\n    margin-right: 1vw;\r\n}\r\n\r\ntextarea {\r\n    border-width: 0;\r\n    border-radius: 2vw;\r\n    background-color: lightgrey;\r\n\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    font-size: 3vw;\r\n    line-height: 3vw;\r\n\r\n    padding: 1vw 1vw;\r\n}\r\n\r\n.msgText {\r\n    width: 100%;\r\n    height: 30vw;\r\n    margin-bottom: 10vw;\r\n}", "",{"version":3,"sources":["webpack://src/pages/forum/WritePost.css"],"names":[],"mappings":"AAAA;IACI,sBAAsB;IACtB,WAAW;IACX,qBAAqB;IACrB,eAAe;IACf,kBAAkB;IAClB,cAAc;IACd,kBAAkB;IAClB,kBAAkB;IAClB,sBAAsB;IACtB,mBAAmB;IACnB,gBAAgB;IAChB,eAAe;AACnB;;AAEA;IACI,cAAc;AAClB;;AAEA;IACI,aAAa;IACb,cAAc;AAClB;;AAEA;IACI,UAAU;IACV,aAAa;IACb,qBAAqB;AACzB;;AAEA;IACI,UAAU;IACV,aAAa;IACb,sBAAsB;AAC1B;;AAEA;IACI,aAAa;IACb,qBAAqB;IACrB,kBAAkB;AACtB;;AAEA;IACI,aAAa;IACb,6BAA6B;IAC7B,mBAAmB;IACnB,cAAc;IACd,iBAAiB;AACrB;;AAEA;IACI,eAAe;IACf,kBAAkB;IAClB,2BAA2B;;IAE3B,aAAa;IACb,uBAAuB;IACvB,mBAAmB;IACnB,cAAc;IACd,gBAAgB;;IAEhB,gBAAgB;AACpB;;AAEA;IACI,WAAW;IACX,YAAY;IACZ,mBAAmB;AACvB","sourcesContent":[".navButton {\r\n    background-color: grey;\r\n    color: grey;\r\n    display: inline-block;\r\n    border-width: 0;\r\n    border-radius: 2vw;\r\n    font-size: 4vw;\r\n    position: relative;\r\n    text-align: center;\r\n    vertical-align: middle;\r\n    white-space: nowrap;\r\n    padding: 1vw 2vw;\r\n    margin: 1vw 1vw;\r\n}\r\n\r\n.selectWrapper.titleButton{\r\n    font-size: 4vw;\r\n}\r\n\r\n.navWrapper {\r\n    display: flex;\r\n    margin: 10vw 0;\r\n}\r\n\r\n.navLeft {\r\n    width: 50%;\r\n    display: flex;\r\n    justify-content: left;\r\n}\r\n\r\n.navRight {\r\n    width: 50%;\r\n    display: flex;\r\n    justify-content: right;\r\n}\r\n\r\n.selectElement{\r\n    display: flex;\r\n    justify-content: left;\r\n    margin-bottom: 3vw;\r\n}\r\n\r\n.selectHeading {\r\n    display: flex;\r\n    /* justify-content: center; */\r\n    align-items: center;\r\n    font-size: 5vw;\r\n    margin-right: 1vw;\r\n}\r\n\r\ntextarea {\r\n    border-width: 0;\r\n    border-radius: 2vw;\r\n    background-color: lightgrey;\r\n\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    font-size: 3vw;\r\n    line-height: 3vw;\r\n\r\n    padding: 1vw 1vw;\r\n}\r\n\r\n.msgText {\r\n    width: 100%;\r\n    height: 30vw;\r\n    margin-bottom: 10vw;\r\n}"],"sourceRoot":""}]);
+// Exports
+/* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
+
+
+/***/ })
+
+})
+//# sourceMappingURL=main.de3e16d915efe3305eb7.hot-update.js.map

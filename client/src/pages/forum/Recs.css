@@ -1,0 +1,14 @@
+.newTile {
+    text-align: center;
+    height: 30vw;
+    line-height: 30vw;
+    border-width: .7vw;
+    border-radius: 2vw;
+    border-style: dashed;
+    border-color: grey;
+
+    color: grey;
+    font-size: 6vw;
+
+    margin-bottom: 5%;
+}

@@ -107,20 +107,22 @@ const FlightInfo = ({username, flightNum}) => {
 
     
     return (
-        <div class='background'>
+        <div class='basic-background'>
             <h1 class='h1'>Flight Details</h1>
 
             <div class="left">Hello, {username}</div>
             
             <div class="bigBox">
-                <div>Flight Number: {flightNumber}</div>
+                <div>Flight Number: {IATA + lastNumbers}</div>
                 <div>Airline: {airline}</div>
                 <div>Status: {status}</div>
+                <div>Departue Time: {dep_time}</div>
+                <div>Arrival Time: {dest_time}</div>
             </div>
 
             <div class="sideBySide">
                 <div class="box">
-                    <div>{dep_airport}</div>
+                    <div class="center">{dep_airport}</div>
                     <div>{((dep_terminal == null) ? 'NA' : dep_terminal) + " " + dep_gate}</div>
                     
                 </div>
@@ -128,20 +130,19 @@ const FlightInfo = ({username, flightNum}) => {
                 <img src={logo_trans} class="logo" style={{display: "inline-block"}}/>
 
                 <div class="box">
-                    <div>{dest_airport}</div>
-                    <div>{dest_terminal + " " + dep_gate}</div>
-                    
+                    <div class="center">{dest_airport}</div>
+                    <div>{((dest_terminal == null) ? 'NA' : dest_terminal) + " " + dest_gate}</div>
                 </div>
             </div>
 
-            {/* ({now} < {dep_time}) ? () */}
+            <div class="grid">
+                <a href={"https://flightaware.com/live/flight/" + ICAO + flightNum} target='_blank'>
+                    <button className="button-main">View Location</button>
+                </a>
 
-            <a href={"https://flightaware.com/live/flight/" + ICAO + flightNumber} target='_blank'>
-                <button className="button-main">View Location</button>
-            </a>
-
-            <div>
-                <button onClick={() => click1('https://flightaware.com/live/flight/' + ICAO + flightNumber)} className="button-main">Send Location</button>
+                <div>
+                    <button onClick={() => click1('https://flightaware.com/live/flight/' + ICAO + flightNum)} className="button-main">Send Location</button>
+                </div>
             </div>
             
         </div>

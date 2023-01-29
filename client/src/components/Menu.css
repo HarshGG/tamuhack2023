@@ -5,7 +5,7 @@
   }
 
 .titleButton {
-  background-color: lightgrey;
+  background-image: linear-gradient(135deg, #c3d8e7 0%, #c7dff0 50%, #b9defc 100%);
   color: #fff;
   display: inline-block;
   border-width: 0;
@@ -19,6 +19,6 @@
   }
     
   .selected {
-    background-color: grey;
+    background-image: linear-gradient(135deg, #ff9a8b 0%, #ffaca0 50%, #f5aca1 100%);
   }
     
