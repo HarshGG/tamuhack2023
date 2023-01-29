@@ -12,17 +12,17 @@
 
 
 .bigBox {
-    background-color: rgb(225, 156, 29);
+    background-image: linear-gradient(135deg, #c3d8e7 0%, #bbccd8 50%, #b9defc 100%);
     border-radius: 2vw;
-    margin-left: 11%;
-    margin-right: 11%;
+    margin-left: 5%;
+    margin-right: 5%;
     margin-top: 5%;
     margin-bottom: 2.5%;
     padding: 2%;
   }
 
 .box {
-    background-color: rgb(225, 156, 29);
+    background-image: linear-gradient(135deg, #c3d8e7 0%, #bbccd8 50%, #b9defc 100%);
     border-radius: 2vw;
     margin-left: 5%;
     margin-right: 5%;
@@ -43,6 +43,7 @@
   }
 
 .left {
+    font-weight: bold;
     text-align: left;
     margin-left: 7%;
   }
@@ -53,4 +54,8 @@
     margin-top: 11%;
   }
 
+.grid {
+  display: grid;
+  justify-content: center;
+}
   
