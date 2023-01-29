@@ -25,6 +25,7 @@ function Forum({username}) {
             price: "$20-$40",
             location: "StoneCo Climbing",
             msg: "I went climbing at a local gym called StoneCo during my layover. Try it out!",
+            votes: 5,
         },
         {
             id: 1,
@@ -39,7 +40,8 @@ function Forum({username}) {
             price: "<$20",
             insideSecurity: true,
             location: "Starbucks",
-            msg: "Starbucks near gate 11 has great latte art!"
+            msg: "Starbucks near gate 11 has great latte art!",
+            votes: 8,
         },
         {
             id: 2,
@@ -56,6 +58,23 @@ function Forum({username}) {
             insideSecurity: false,
             location: "Aggie Park",
             msg: "Aggie Park is a great place to kill time during a long layover!",
+            votes: 1,
+        },
+        {
+            id: 2,
+            name: "Jerry Kurtin",
+            date: {
+                day: 29,
+                month: 1,
+                year: 2023,
+            },
+            type: "general",
+            length: ">2 hr",
+            price: "Free",
+            insideSecurity: true,
+            location: "Bathrooms",
+            msg: "I love the stalls in this airport",
+            votes: -3,
         }
     ])
 
@@ -63,7 +82,6 @@ function Forum({username}) {
         console.log("adding post")
         var currTiles = tiles;
         currTiles.push(post);
-        setTiles(currTiles);
 
         setWritingPost(false);
     }
