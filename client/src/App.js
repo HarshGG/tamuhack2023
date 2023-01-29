@@ -12,7 +12,7 @@ import Landing from "./pages/Landing"
 import Home from "./pages/Home"
 import CheckIn from "./pages/Check-in"
 import FlightInfo from "./pages/Flight-info"
-import Recommendations from "./pages/Recommendations"
+import Forum from "./pages/forum/Forum"
 
 const socket = io.connect("http://localhost:3001");
 
@@ -136,7 +136,7 @@ function App() {
         <Route path='/check-in' element={ <CheckIn/> }/>
         <Route path='/home' element={ <Home/> }/>
         <Route path='/flight-info' element={ <FlightInfo/> }/>
-        <Route path='/recommendations' element={ <Recommendations/> }/>
+        <Route path='/forum' element={ <Forum/> }/>
         <Route path="/chat" element={ <Chat/> } />
       </Routes>
     </BrowserRouter>

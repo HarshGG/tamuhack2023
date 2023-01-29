@@ -1,0 +1,17 @@
+/* .background {
+    width: 100vw;
+    height: 100vh;
+    background: #FFD29D;
+    background-image: linear-gradient(135deg, #fd988a 0%, #ffbc9d 50%, #ffc787 100%);
+    color: #C51B29;
+    font-family: "Comfortaa", normal;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+  } */
+
+.center {
+    text-align: center;
+  }
+
+  
