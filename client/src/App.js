@@ -122,6 +122,15 @@ function App() {
       dest_time: (new Date()).getTime(),
       status: 'On-time',
     }
+
+    function onGoToForum() {
+      setPageState("forum");
+    }
+
+    function onGoToFlightInfo() {
+      setPageState("flight info");
+    }
+
     //---------------------------------------------------
 
     /* Code for FORUM/RECS*/
@@ -170,15 +179,15 @@ function App() {
             </div>
             <div class="tabs">
                 <div class="navtab-row">
-                    <div class="navtab" style={{width: "100%"}}>
+                    <div class="navtab" style={{width: "100%"}} onClick={onGoToFlightInfo}>
                         <img src={info_icon} style={{height: "20px", width: "20px", paddingRight: "10px"}}></img>
                         <div>MORE ABOUT YOUR FLIGHT</div>
                     </div>
                 </div>
                 <div class="navtab-row">
-                    <div class="navtab" style={{width: "70%"}}>
-                    <img src={forum} style={{height: "20px", width: "20px", paddingRight: "10px"}}></img>
-                        <div>FORUMS</div>
+                    <div class="navtab" style={{width: "70%"}} onClick={onGoToForum}>
+                      <img src={forum} style={{height: "20px", width: "20px", paddingRight: "10px"}}></img>
+                          <div>FORUMS</div>
                     </div>
                     <div class="navtab" style={{width: "30%"}} onClick={onGoToChat}>
                       <img src={chat_img} class="chat-icon"></img>
